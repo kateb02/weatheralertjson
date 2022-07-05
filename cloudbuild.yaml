@@ -1,0 +1,13 @@
+steps:
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gus.gcr.io/sa-ai-dev/weatheralertjson/weatheralertjson@sha256:f1403e565a02e8510fba47b1a90f9827d0c5f53d563f071f87162ecc05cc06eb', '.']
+  # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us.gcr.io/sa-ai-dev/weatheralertjson/weatheralertjson@sha256:f1403e565a02e8510fba47b1a90f9827d0c5f53d563f071f87162ecc05cc06eb']
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: ['run', 'deploy', 'weatheralertjson', '--image', 'us.gcr.io/sa-ai-dev/weatheralertjson/weatheralertjson@sha256:f1403e565a02e8510fba47b1a90f9827d0c5f53d563f071f87162ecc05cc06eb', '--region', 'us-central1']
+images:
+  - gus.gcr.io/sa-ai-dev/weatheralertjson/weatheralertjson@sha256:f1403e565a02e8510fba47b1a90f9827d0c5f53d563f071f87162ecc05cc06eb
