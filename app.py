@@ -45,7 +45,6 @@ def returnCoordinates(data):
             ##look for index of "coordinates" - pairs are after this
             indexOfFirstCoordinate = tupleWithCoordinates.index("coordinates") + 1 ##integer
             coordsOnly = tupleWithCoordinates[indexOfFirstCoordinate:]
-
             ## flatten coordinate list - unsure how deeply coordinate pairs are nested
             ## should return the coordinates in order in a list
 
